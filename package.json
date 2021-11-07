@@ -1,0 +1,23 @@
+{
+  "name": "e-shop-mern",
+  "version": "1.0.0",
+  "description": "MERN E-Shop",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zintesar/e-shop-mern.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zintesar/e-shop-mern/issues"
+  },
+  "homepage": "https://github.com/zintesar/e-shop-mern#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

@@ -8,7 +8,7 @@ const products = [
         category: 'category 1',
         price: 10,
         countInStock: 3,
-        rating: 4.5,
+        rating: 1.5,
         numReviews: 1,
     },
     {
@@ -20,7 +20,7 @@ const products = [
         category: 'category 2',
         price: 20,
         countInStock: 3,
-        rating: 4.5,
+        rating: 2.5,
         numReviews: 2,
     },
     {
@@ -32,7 +32,7 @@ const products = [
         category: 'category 3',
         price: 30,
         countInStock: 3,
-        rating: 4.5,
+        rating: 3.5,
         numReviews: 3,
     },
     {
@@ -56,10 +56,12 @@ const products = [
         category: 'category 5',
         price: 50,
         countInStock: 5,
-        rating: 4.5,
+        rating: 0.5,
         numReviews: 5,
     },
 ]
 
 
-module.exports = products
+export default products
+
+// module.exports = products

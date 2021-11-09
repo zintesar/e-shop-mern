@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 // import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Container } from "react-bootstrap";
 
 
@@ -13,18 +13,17 @@ import ProductScreen from "./screens/ProductScreen";
 const App = () => {
   return (
     <Router>
-      <div className="App">
-        <Header></Header>
-
-        <main className='py-3'>
-          <Container>
-            <Route path='/' component={HomeScreen} exact ></Route>
-            <Route path='/product/:id' component={ProductScreen} ></Route>
-
-          </Container>
-        </main>
-        <Footer></Footer>
-      </div>
+      <Header></Header>
+      <main className='py-3'>
+        <Container>
+          {/* <ProductScreen></ProductScreen> */}
+          <Routes>
+            <Route path='/' element={<HomeScreen></HomeScreen>} exact ></Route>
+            <Route path='/product/:id' element={<ProductScreen></ProductScreen>} ></Route>
+          </Routes>
+        </Container>
+      </main>
+      <Footer></Footer>
     </Router>
   );
 }

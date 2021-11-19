@@ -11,6 +11,9 @@ import Loader from '../components/Loader'
 
 const ProductScreen = ({ match }) => {
     let { id } = useParams()
+
+    const [qty, setQty] = useState(0)
+
     const dispatch = useDispatch()
 
     const productDetails = useSelector(state => state.productDetails)
@@ -24,7 +27,6 @@ const ProductScreen = ({ match }) => {
     return (
         <div>
 
-            {/* <h1>asd</h1> */}
 
 
             <Link className='btn btn-dark my-3' to='/'>

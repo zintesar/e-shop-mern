@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
+import CartScreen from "./screens/CartScreen";
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<HomeScreen></HomeScreen>} exact ></Route>
             <Route path='/product/:id' element={<ProductScreen></ProductScreen>} ></Route>
+            <Route path='/cart/:id?' element={<CartScreen></CartScreen>} ></Route>
           </Routes>
         </Container>
       </main>

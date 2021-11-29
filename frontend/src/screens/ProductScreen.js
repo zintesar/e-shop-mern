@@ -11,10 +11,10 @@ import Loader from '../components/Loader'
 
 // const ProductScreen = ({ history, match }) => {
 const ProductScreen = (props) => {
-    let { id } = useParams()
+    let params = useParams()
     let navigate = useNavigate()
 
-    const [qty, setQty] = useState(0)
+    const [qty, setQty] = useState(1)
 
     const dispatch = useDispatch()
 
@@ -22,13 +22,13 @@ const ProductScreen = (props) => {
     const { loading, error, product } = productDetails
 
     useEffect(() => {
-        dispatch(listProductDetails(id))
+        dispatch(listProductDetails(params.id))
     }, [dispatch, props.match])
 
     const addToCartHandler = () => {
         // console.log(`/cart/${id}?qty=${qty}`)
 
-        navigate(`/cart/${id}?qty=${qty}`)
+        navigate(`/cart/${params.id}?qty=${qty}`)
 
 
     }
@@ -48,7 +48,7 @@ const ProductScreen = (props) => {
             ) : (
                 <Row>
                     <Col md={6}>
-                        <image src={product.Image} fluid ></image>
+                        {/* <image src={product.Image} fluid ></image> */}
                     </Col>
                     <Col md={3}>
                         <ListGroup variant='flush'>

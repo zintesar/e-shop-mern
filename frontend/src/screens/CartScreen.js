@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from 'react-router'
 
 import Message from '../components/Message'
 import { addToCart } from '../actions/cartActions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const CartScreen = () => {
 
@@ -16,12 +16,17 @@ const CartScreen = () => {
 
     const dispatch = useDispatch()
 
+    const cart = useSelector(state => state.cart)
+    const { cartItems } = cart
+
+    console.log(cartItems)
+
     useEffect(() => {
         if (productId) {
             dispatch(addToCart(productId, qty))
         }
     }, [dispatch, productId, qty])
-    // console.log(location.search)
+    // console.log(location.search)V
 
 
 

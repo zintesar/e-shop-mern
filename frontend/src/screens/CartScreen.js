@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router'
-
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Col, ListGroup } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart } from '../actions/cartActions'
-import { useDispatch, useSelector } from 'react-redux'
+
 
 const CartScreen = () => {
 
@@ -19,20 +21,40 @@ const CartScreen = () => {
     const cart = useSelector(state => state.cart)
     const { cartItems } = cart
 
-    console.log(cartItems)
+    // console.log(cartItems)
 
     useEffect(() => {
         if (productId) {
             dispatch(addToCart(productId, qty))
         }
     }, [dispatch, productId, qty])
-    // console.log(location.search)V
 
 
 
     return (
-        <div>
 
+        <div>
+            <Col md={8}>
+                <h1>Shopping Cart</h1>
+                {cartItems.length === 0 ? (
+                    <Message>
+                        Your cart is empty
+                        <Link to='/'>
+                            Go Back
+                        </Link>
+                    </Message>
+                ) : (
+                    <ListGroup variant='flush'>
+
+                    </ListGroup>
+                )}
+            </Col>
+            <Col md={2}
+
+            ></Col>
+            <Col md={2}
+
+            ></Col>
         </div>
     )
 }

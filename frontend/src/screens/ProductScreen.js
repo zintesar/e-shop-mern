@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem, Form } from 'react-bootstrap'
 import { listProductDetails } from '../actions/productActions'
@@ -9,10 +9,10 @@ import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 
-// const ProductScreen = ({ history, match }) => {
-const ProductScreen = (props) => {
-    let params = useParams()
-    let navigate = useNavigate()
+const ProductScreen = ({ history, match }) => {
+    // const ProductScreen = (props) => {
+    // let params = useParams()
+    // let navigate = useNavigate()
 
     const [qty, setQty] = useState(1)
 
@@ -22,14 +22,15 @@ const ProductScreen = (props) => {
     const { loading, error, product } = productDetails
 
     useEffect(() => {
-        dispatch(listProductDetails(params.id))
-    }, [dispatch, props.match])
+        dispatch(listProductDetails(match.params.id))
+    }, [dispatch, match])
 
     const addToCartHandler = () => {
-        // console.log(`/cart/${id}?qty=${qty}`)
+
+        history.push(`/cart/${match.params.id}?qty=${qty}`)
+        // console.log(`/cart/${params.id}?qty=${qty}`)
 
         // navigate(`/cart/${params.id}?qty=${qty}`)
-        navigate(`/cart/${params.id}?qty=${qty}`)
 
 
 

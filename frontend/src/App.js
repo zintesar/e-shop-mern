@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 // import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Container } from "react-bootstrap";
 
 
@@ -18,15 +18,14 @@ const App = () => {
       <main className='py-3'>
         <Container>
           {/* <ProductScreen></ProductScreen> */}
-          <Routes>
-            <Route path='/' element={<HomeScreen></HomeScreen>} exact ></Route>
-            <Route path='/product/:id' element={<ProductScreen></ProductScreen>} ></Route>
-            <Route path='/cart/:id?' element={<CartScreen></CartScreen>} ></Route>
-          </Routes>
+          <Route path='/' element={<HomeScreen></HomeScreen>} exact ></Route>
+          <Route path='/product/:id' element={<ProductScreen></ProductScreen>} ></Route>
+          <Route path='/cart' element={<CartScreen></CartScreen>}></Route>
+          <Route path='/cart/:id' element={<CartScreen></CartScreen>} ></Route>
         </Container>
       </main>
       <Footer></Footer>
-    </Router>
+    </Router >
   );
 }
 

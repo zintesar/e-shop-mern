@@ -37,7 +37,7 @@ const CartScreen = () => {
     return (
 
         <Row>
-            <Col md={8}>
+            {/* <Col md={8}>
                 <h1>Shopping Cart</h1>
                 {cartItems.length === 0 ? (
                     <Message>
@@ -46,7 +46,8 @@ const CartScreen = () => {
                             Go Back
                         </Link>
                     </Message>
-                ) : (
+                ) : 
+                (
                     <ListGroup variant='flush'>
                         {cartItems.map(item => (
                             <ListGroupItem>
@@ -80,7 +81,7 @@ const CartScreen = () => {
             ></Col>
             <Col md={2}
 
-            ></Col>
+            ></Col> */}
         </Row>
     )
 }

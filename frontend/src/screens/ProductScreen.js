@@ -23,7 +23,7 @@ const ProductScreen = (props) => {
 
     useEffect(() => {
         dispatch(listProductDetails(params.id))
-    }, [dispatch, props.match])
+    }, [dispatch, props])
 
     const addToCartHandler = () => {
         // console.log(`/cart/${id}?qty=${qty}`)

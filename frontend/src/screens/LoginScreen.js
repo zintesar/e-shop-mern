@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const LoginScreen = () => {
-    return (
-        <div>
 
-        </div>
+    const [email, setemail] = useState('')
+    const [password, setpassword] = useState('')
+
+    return (
+
+        <div >
+
+        </div >
     )
 }
 

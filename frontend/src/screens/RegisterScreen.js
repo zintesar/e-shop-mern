@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { login } from '../actions/userAction'
+import { register } from '../actions/userAction'
 
 const RegisterScreen = () => {
 
@@ -37,7 +37,12 @@ const RegisterScreen = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        //Dispatch register
+        if (password !== confirmPassword) {
+            setMessage('password do not match')
+        } else {
+
+            dispatch(register(name, email, password))
+        }
     }
 
 
@@ -46,6 +51,7 @@ const RegisterScreen = () => {
         <FormContainer>
 
             <h1>Sign Up</h1>
+            {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
@@ -63,7 +69,7 @@ const RegisterScreen = () => {
                     <Form.Control type='password' placeholder='Enter password' value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='confirmPassword'>
-                    <Form.Label>confirm Password</Form.Label>
+                    <Form.Label>Confirm Password</Form.Label>
                     <Form.Control type='password' placeholder='Confirm password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></Form.Control>
                 </Form.Group>
 
@@ -74,7 +80,7 @@ const RegisterScreen = () => {
                 <Row>
                     <Col>
                         Have an Account?{' '}
-                        <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}> </Link>
+                        <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}> Login </Link>
                     </Col>
                 </Row>
             </Form>

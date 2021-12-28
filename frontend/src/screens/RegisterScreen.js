@@ -24,13 +24,21 @@ const ProfileScreen = () => {
     const userDetails = useSelector(state => state.userDetails)
     const { loading, error, user } = userDetails
 
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
 
     useEffect(() => {
-        if (userInfo) {
-            navigate(redirect)
+        if (!userInfo) {
+            navigate('/login')
+        } else {
+            if (!user.name) {
+                dispatch(getUserDetails('profile'))
+            } else {
+                setName(user.name)
+                setEmail(user.email)
+            }
         }
-
-    }, [navigate, userInfo])
+    }, [dispatch, navigate, userInfo])
 
 
     const submitHandler = (e) => {
@@ -39,7 +47,7 @@ const ProfileScreen = () => {
             setMessage('password do not match')
         } else {
 
-            dispatch(register(name, email, password))
+            // DISPATCH UPDATE PROFILE
         }
     }
 

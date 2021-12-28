@@ -4,12 +4,11 @@ import { Button, Col, Form, FormControl, FormLabel, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
-import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { register } from '../actions/userAction'
+import { getUserDetails } from '../actions/userAction'
 
-const RegisterScreen = () => {
+const ProfileScreen = () => {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -22,10 +21,9 @@ const RegisterScreen = () => {
 
     const dispatch = useDispatch()
 
-    const userRegister = useSelector(state => state.userRegister)
-    const { loading, error, userInfo } = userRegister
+    const userDetails = useSelector(state => state.userDetails)
+    const { loading, error, user } = userDetails
 
-    const redirect = location.search ? location.search.split('=')[1] : '/'
 
     useEffect(() => {
         if (userInfo) {
@@ -88,4 +86,4 @@ const RegisterScreen = () => {
     )
 }
 
-export default RegisterScreen
+export default ProfileScreen

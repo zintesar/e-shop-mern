@@ -4,42 +4,31 @@ import { Button, Col, Form, FormControl, FormLabel, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { getUserDetails } from '../actions/userAction'
+import { register } from '../actions/userAction'
 
-const ProfileScreen = () => {
+const RegisterScreen = () => {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState(null)
-
     const location = useLocation()
     const navigate = useNavigate()
-
     const dispatch = useDispatch()
+    const userRegister = useSelector(state => state.userRegister)
+    const { loading, error, userInfo } = userRegister
+    const redirect = location.search ? location.search.split('=')[1] : '/'
 
-    const userDetails = useSelector(state => state.userDetails)
-    const { loading, error, user } = userDetails
-
-    const userLogin = useSelector(state => state.userLogin)
-    const { userInfo } = userLogin
 
     useEffect(() => {
-        if (!userInfo) {
-            navigate('/login')
-        } else {
-            if (!user.name) {
-                dispatch(getUserDetails('profile'))
-            } else {
-                setName(user.name)
-                setEmail(user.email)
-            }
+        if (userInfo) {
+            navigate(redirect)
         }
-    }, [dispatch, navigate, userInfo])
-
+    }, [navigate, userInfo])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -47,10 +36,9 @@ const ProfileScreen = () => {
             setMessage('password do not match')
         } else {
 
-            // DISPATCH UPDATE PROFILE
+            dispatch(register(name, email, password))
         }
     }
-
 
     return (
 
@@ -94,4 +82,4 @@ const ProfileScreen = () => {
     )
 }
 
-export default ProfileScreen
+export default RegisterScreen

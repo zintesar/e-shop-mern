@@ -82,7 +82,6 @@ export const register = (name, email, password) => async (dispatch) => {
 
 }
 
-// start here vid 8.6 03:42
 export const getUserDetails = (id) => async (dispatch, getState) => {
 
     try {

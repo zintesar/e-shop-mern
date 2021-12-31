@@ -16,11 +16,14 @@ const RegisterScreen = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState(null)
+
     const location = useLocation()
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
     const userRegister = useSelector(state => state.userRegister)
     const { loading, error, userInfo } = userRegister
+
     const redirect = location.search ? location.search.split('=')[1] : '/'
 
 

@@ -7,6 +7,8 @@ import { useLocation } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { getUserDetails } from '../actions/userAction'
+import axios from "axios"
+
 
 const ProfileScreen = () => {
 
@@ -27,11 +29,12 @@ const ProfileScreen = () => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
+
     useEffect(() => {
         if (!userInfo) {
             navigate('/login')
         } else {
-            if (user) {
+            if (!user.name) {
                 dispatch(getUserDetails('profile'))
             } else {
                 setName(user.name)

@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { getUserDetails } from '../actions/userAction'
+import { getUserDetails, updateUserProfile } from '../actions/userAction'
 import axios from "axios"
 
 
@@ -29,6 +29,8 @@ const ProfileScreen = () => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
+    const userUpdateProfile = useSelector(state => state.userUpdateProfile)
+    const { success } = userUpdateProfile
 
     useEffect(() => {
         if (!userInfo) {
@@ -50,7 +52,7 @@ const ProfileScreen = () => {
             setMessage('password do not match')
         } else {
 
-            // DISPATCH UPDATE PROFILE
+            dispatch(updateUserProfile({ id: user._id, name, email, password }))
         }
     }
 
@@ -61,6 +63,7 @@ const ProfileScreen = () => {
                 <h2>User Profile</h2>
                 {message && <Message variant='danger'>{message}</Message>}
                 {error && <Message variant='danger'>{error}</Message>}
+                {success && <Message variant='success'>Profile Updated</Message>}
                 {loading && <Loader />}
                 <Form onSubmit={submitHandler}>
                     <Form.Group controlId='name'>

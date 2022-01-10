@@ -9,7 +9,7 @@ export const login = (email, password) => async (dispatch) => {
         })
 
         const config = {
-            Headers: {
+            headers: {
                 'Content_Type': 'application/json'
             }
         }
@@ -49,7 +49,7 @@ export const register = (name, email, password) => async (dispatch) => {
         })
 
         const config = {
-            Headers: {
+            headers: {
                 'Content_Type': 'application/json'
             }
         }

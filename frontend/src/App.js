@@ -12,6 +12,7 @@ import CartScreen from "./screens/CartScreen";
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ShippingScreen from './screens/ShippingScreen';
 
 
 const App = () => {
@@ -22,7 +23,7 @@ const App = () => {
         <Container>
           {/* <ProductScreen></ProductScreen> */}
           <Routes>
-            <Route path='/' element={<HomeScreen></HomeScreen>} exact ></Route>
+            <Route path='/shipping' element={<ShippingScreen></ShippingScreen>} exact ></Route>
             <Route path='/login' element={<LoginScreen></LoginScreen>} exact ></Route>
             <Route path='/register' element={<RegisterScreen></RegisterScreen>} exact ></Route>
             <Route path='/profile' element={<ProfileScreen></ProfileScreen>}></Route>
@@ -30,6 +31,7 @@ const App = () => {
             <Route path='/cart' element={<CartScreen></CartScreen>} >
               <Route path=':id' element={<CartScreen></CartScreen>} />
             </Route>
+            <Route path='/' element={<HomeScreen></HomeScreen>} exact ></Route>
 
           </Routes>
         </Container>

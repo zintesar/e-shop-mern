@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { FormControl, FormGroup, FormLabel } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 
 const ShippingScreen = () => {
@@ -14,7 +15,16 @@ const ShippingScreen = () => {
 
     return (
         <FormContainer>
+            <h1>Shipping</h1>
+            <Form onSubmit={submitHandler}>
+                <FormGroup>
+                    <FormLabel>
+                        <FormControl>
 
+                        </FormControl>
+                    </FormLabel>
+                </FormGroup>
+            </Form>
         </FormContainer>
     )
 }

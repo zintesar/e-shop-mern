@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { Button, Col, Form, FormControl, FormLabel, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
@@ -25,10 +24,12 @@ const LoginScreen = () => {
 
     useEffect(() => {
         if (userInfo) {
-            navigate(redirect)
+            console.log('use effect redirect in loginscreen');
+            console.log(redirect);
+            navigate(redirect, { replace: true })
         }
 
-    }, [navigate, userInfo])
+    }, [navigate, userInfo, redirect])
 
 
     const submitHandler = (e) => {

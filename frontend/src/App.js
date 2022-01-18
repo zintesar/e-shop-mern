@@ -21,11 +21,11 @@ const App = () => {
       <Header></Header>
       <main className='py-3'>
         <Container>
-          {/* <ProductScreen></ProductScreen> */}
           <Routes>
 
+            <Route path='/shipping' element={<ShippingScreen></ShippingScreen>} />
             <Route path='/login' element={<LoginScreen></LoginScreen>} >
-              <Route path='shipping' element={<ShippingScreen></ShippingScreen>} />
+              {/* <Route path='shipping' element={<ShippingScreen></ShippingScreen>} /> */}
             </Route>
             <Route path='/register' element={<RegisterScreen></RegisterScreen>} exact ></Route>
             <Route path='/profile' element={<ProfileScreen></ProfileScreen>}></Route>

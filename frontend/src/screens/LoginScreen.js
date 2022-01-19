@@ -24,9 +24,7 @@ const LoginScreen = () => {
 
     useEffect(() => {
         if (userInfo) {
-            console.log('use effect redirect in loginscreen');
-            console.log(redirect);
-            navigate('/' + redirect)
+            navigate(redirect)
         }
 
     }, [navigate, userInfo, redirect])

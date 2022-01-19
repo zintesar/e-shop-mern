@@ -26,7 +26,7 @@ const LoginScreen = () => {
         if (userInfo) {
             console.log('use effect redirect in loginscreen');
             console.log(redirect);
-            navigate(redirect, { replace: true })
+            navigate('/' + redirect)
         }
 
     }, [navigate, userInfo, redirect])

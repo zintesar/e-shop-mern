@@ -24,9 +24,7 @@ const App = () => {
           <Routes>
 
             <Route path='/shipping' element={<ShippingScreen></ShippingScreen>} />
-            <Route path='/login' element={<LoginScreen></LoginScreen>} >
-              {/* <Route path='shipping' element={<ShippingScreen></ShippingScreen>} /> */}
-            </Route>
+            <Route path='/login' element={<LoginScreen></LoginScreen>}></Route>
             <Route path='/register' element={<RegisterScreen></RegisterScreen>} exact ></Route>
             <Route path='/profile' element={<ProfileScreen></ProfileScreen>}></Route>
             <Route path='/product/:id' element={<ProductScreen></ProductScreen>} ></Route>

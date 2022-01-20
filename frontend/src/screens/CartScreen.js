@@ -2,10 +2,9 @@ import React, { useEffect } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Card, Col, Form, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
+import { Button, Card, Col, Form, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
-import Button from '@restart/ui/esm/Button'
 
 
 const CartScreen = () => {
@@ -79,8 +78,9 @@ const CartScreen = () => {
                                         </Form.Control>
                                     </Col>
                                     <Col md={2}>
-                                        <Button type='button' variant='light' onClick={() => removeFromCartHandler(item.product)}>
+                                        <Button type='button' onClick={() => removeFromCartHandler(item.product)}>
                                             <i className='fas fa-trash'></i>
+
                                         </Button>
                                     </Col>
                                 </Row>
@@ -97,9 +97,7 @@ const CartScreen = () => {
                             ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandler}>
-                                Proceed to checkout
-                            </Button>
+                            <Button type='button' variant='primary' className='btn btn-block' disabled={cartItems.length === 0} onClick={checkoutHandler}>Proceed to checkout</Button>
                         </ListGroup.Item>
 
 

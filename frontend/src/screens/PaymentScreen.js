@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
-import { Button, Form, FormControl, FormGroup, FormLabel, Col, FormCheck } from 'react-bootstrap'
+import { Button, Form, FormGroup, FormLabel, Col, FormCheck } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
+import FormContainer from '../components/FormContainer'
 import { savePaymentMethod } from '../actions/cartActions'
 
 const PaymentScreen = () => {
@@ -43,6 +43,7 @@ const PaymentScreen = () => {
                         {/* <FormCheck type='radio' label='Stripe' id='Stripe' name='paymentmethod' value='Stripe' onChange={(e) => setPaymentMethod(e.target.value)}></FormCheck> */}
                     </Col>
                 </FormGroup>
+
 
                 <Button type='submit' variant='primary' className='py-3'> Continue </Button>
             </Form>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Nav, NavItem, NavLink } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { useParams } from 'react-router-dom'
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
 

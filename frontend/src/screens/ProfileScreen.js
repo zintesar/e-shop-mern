@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { Button, Col, Form, FormControl, FormLabel, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { getUserDetails, updateUserProfile } from '../actions/userAction'
-import axios from "axios"
 
 
 const ProfileScreen = () => {
@@ -18,7 +16,6 @@ const ProfileScreen = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState(null)
 
-    const location = useLocation()
     const navigate = useNavigate()
 
     const dispatch = useDispatch()

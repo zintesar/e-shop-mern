@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { Row, Col, ListGroup, Image, Card, ListGroupItem, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
-import { saveShippingAddress } from '../actions/cartActions'
+import { createOrder } from '../actions/orderActions'
 
 const PlaceOrderScreen = () => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const cart = useSelector(state => state.cart)
 
@@ -20,11 +23,25 @@ const PlaceOrderScreen = () => {
     cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)))
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
 
+    const orderCreate = useSelector(state => state.orderCreate)
+    const { order, success, error } = orderCreate
 
-
+    useEffect(() => {
+        if (success) {
+            // navigate(`/order/${order._id}`)
+        }
+    }, [navigate, success])
 
     const placeOrderHandler = () => {
-        console.log('order');
+        dispatch(createOrder({
+            orderItems: cart.cartItems,
+            shippingAddress: cart.shippingAddress,
+            paymentMethod: cart.paymentMethod,
+            itemsPrice: cart.itemsPrice,
+            shippingPrice: cart.shippingPrice,
+            totalPrice: cart.totalPrice,
+        })
+        )
     }
 
     return (
@@ -123,7 +140,9 @@ const PlaceOrderScreen = () => {
                                     <Col>${cart.totalPrice}</Col>
                                 </Row>
                             </ListGroupItem>
-
+                            <ListGroupItem>
+                                {error && <Message variant='danger'>{error}</Message>}
+                            </ListGroupItem>
                             <ListGroupItem>
                                 <Button type='button' className='btn btn-block' disabled={cart.cartItems === 0} onClick={placeOrderHandler}>Place Order</Button>
                             </ListGroupItem>

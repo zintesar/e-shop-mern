@@ -28,7 +28,7 @@ const OrderScreen = () => {
 
     useEffect(() => {
         dispatch(getOrderDetails(params.id))
-    }, [navigate])
+    }, [navigate, dispatch, params])
 
 
 

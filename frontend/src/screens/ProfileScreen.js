@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { getUserDetails, updateUserProfile } from '../actions/userAction'
+import { listMyOrders } from '../actions/orderActions'
 
 
 const ProfileScreen = () => {
@@ -29,12 +30,17 @@ const ProfileScreen = () => {
     const userUpdateProfile = useSelector(state => state.userUpdateProfile)
     const { success } = userUpdateProfile
 
+    const orderListMy = useSelector(state => state.orderListMy)
+    const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
+
+
     useEffect(() => {
         if (!userInfo) {
             navigate('/login')
         } else {
             if (!user.name) {
                 dispatch(getUserDetails('profile'))
+                dispatch(listMyOrders())
             } else {
                 setName(user.name)
                 setEmail(user.email)
@@ -88,6 +94,10 @@ const ProfileScreen = () => {
             </Col>
             <Col md={9}>
                 <h2> My Orders </h2>
+                {/* {loadingOrders ? <Loader></Loader> :errorOrders ? <Message variant='danger'> {errorOrders}</Message> 
+                : (
+
+                )} */}
             </Col>
         </Row>
     )

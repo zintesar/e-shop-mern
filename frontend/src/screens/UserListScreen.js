@@ -3,9 +3,13 @@ import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useNavigate } from 'react-router-dom';
-import { listUsers } from '../actions/userAction';
+import { listProductDetails } from '../actions/productActions';
+import { deleteUser, listUsers } from '../actions/userAction';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+
+
+
 
 
 const UserListScreen = () => {
@@ -17,23 +21,29 @@ const UserListScreen = () => {
     const { loading, error, users } = userList
 
     const userLogin = useSelector(state => state.userLogin)
-    const { userinfo } = userLogin
+    const { userInfo } = userLogin
+
+    const userDelete = useSelector(state => state.userDelete)
+    const { success: successDelete } = userDelete
 
     useEffect(() => {
 
-        if (userinfo && userinfo.isAdmin) {
+        if (userInfo && userInfo.isAdmin) {
+
 
             dispatch(listUsers())
+
         } else {
 
             navigate('/login')
 
         }
 
-    }, [dispatch, navigate])
+    }, [dispatch, navigate, successDelete])
 
     const deleteHandler = (id) => {
-        console.log('delete');
+        // dispatch(listProductDetails(id))
+        dispatch(deleteUser(id))
     }
     return (
         <>

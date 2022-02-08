@@ -26,13 +26,8 @@ const ProductScreen = (props) => {
     }, [dispatch, props, params])
 
     const addToCartHandler = () => {
-        // console.log(`/cart/${id}?qty=${qty}`)
 
-        // navigate(`/cart/${params.id}?qty=${qty}`)
         navigate(`/cart/${params.id}?qty=${qty}`)
-
-
-
     }
 
     return (

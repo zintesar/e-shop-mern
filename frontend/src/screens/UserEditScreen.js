@@ -7,11 +7,13 @@ import { useLocation } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { getUserDetails } from '../actions/userAction'
+import { getUserDetails, updateUser } from '../actions/userAction'
+import { USER_UPDATE_RESET } from '../constants/userConstants'
 
 const UserEditScreen = () => {
 
     const params = useParams()
+
 
     const userId = params.id
 
@@ -20,28 +22,38 @@ const UserEditScreen = () => {
     const [isAdmin, setIsAdmin] = useState(false)
     const [message, setMessage] = useState(null)
 
-    const location = useLocation()
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const userDetails = useSelector(state => state.userDetails)
     const { loading, error, user } = userDetails
 
+    const userUpdate = useSelector(state => state.userUpdate)
+    const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = userUpdate
+
 
     useEffect(() => {
-
-        if (!user.name || user._id !== userId) {
-            dispatch(getUserDetails(userId))
+        if (successUpdate) {
+            dispatch({ type: USER_UPDATE_RESET })
+            navigate('/admin/userlist')
         } else {
-            setName(user.name)
-            setEmail(user.email)
-            setIsAdmin(user.isAdmin)
+
+            if (!user.name || user._id !== userId) {
+                dispatch(getUserDetails(userId))
+            } else {
+                setName(user.name)
+                setEmail(user.email)
+                setIsAdmin(user.isAdmin)
+            }
         }
 
-    }, [dispatch, userId, user])
+
+
+    }, [dispatch, navigate, userId, user, successUpdate])
 
     const submitHandler = (e) => {
         e.preventDefault()
+        dispatch(updateUser({ _id: userId, name, email, isAdmin }))
 
     }
 
@@ -54,9 +66,9 @@ const UserEditScreen = () => {
             <FormContainer>
 
                 <h1>Edit User</h1>
-                {/* {message && <Message variant='danger'>{message}</Message>}
-            {error && <Message variant='danger'>{error}</Message>}
-            {loading && <Loader />} */}
+
+                {loadingUpdate && <Loader />}
+                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
                 {loading
                     ? (<Loader></Loader>
                     ) : error ? (<Message variant='danger'>{error}</Message>

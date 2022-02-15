@@ -5,7 +5,7 @@ import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useNavigate } from 'react-router-dom';
-import { deleteUser, listProducts } from '../actions/productAction';
+import { deleteProduct, listProducts } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
@@ -17,6 +17,9 @@ const ProductListScreen = () => {
 
     const productList = useSelector(state => state.productList)
     const { loading, error, products } = productList
+
+    const productDelete = useSelector(state => state.productDelete)
+    const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -34,10 +37,13 @@ const ProductListScreen = () => {
 
         }
 
-    }, [dispatch, navigate, userInfo])
+    }, [dispatch, navigate, userInfo, successDelete])
 
     const deleteHandler = (id) => {
-        // delete products
+        if (window.confirm('Are you sure ')) {
+
+            dispatch(deleteProduct(id))
+        }
     }
 
     const createProductHandler = (product) => {
@@ -47,16 +53,20 @@ const ProductListScreen = () => {
     return (
         <>
             <Row>
-                <Col>
+                <Col className=''>
                     <h1>Products</h1>
                 </Col>
-                <Col className='text-right'>
+                <Col className='text-end'>
+
+
                     <Button className='my-3' onClick={createProductHandler}>
                         <i className='fas fa-plus'></i> Create Product
                     </Button>
+
                 </Col>
             </Row>
-
+            {loadingDelete && <Loader></Loader>}
+            {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
             {loading ? <Loader></Loader> : error ? <Message variant='danger'>{error}</Message> : (
                 <Table striped bordered hover responsive className='table-sm'>
                     <thead>

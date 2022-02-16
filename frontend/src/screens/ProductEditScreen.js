@@ -7,8 +7,8 @@ import { useLocation } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { listProductDetails } from '../actions/productActions'
-import { USER_UPDATE_RESET } from '../constants/userConstants'
+import { listProductDetails, updateProduct } from '../actions/productActions'
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
 const ProductEditScreen = () => {
 
@@ -23,7 +23,7 @@ const ProductEditScreen = () => {
     const [brand, setBrand] = useState('')
     const [category, setCategory] = useState('')
     const [countInStock, setCountInStock] = useState(0)
-    const [description, setDescription] = useState(0)
+    const [description, setDescription] = useState('')
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -31,33 +31,48 @@ const ProductEditScreen = () => {
     const productDetails = useSelector(state => state.productDetails)
     const { loading, error, product } = productDetails
 
-    const userUpdate = useSelector(state => state.userUpdate)
-    const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = userUpdate
+    const productUpdate = useSelector(state => state.productUpdate)
+    const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate
 
 
     useEffect(() => {
 
-
-        if (!product.name || product._id !== productId) {
-            dispatch(listProductDetails(productId))
+        if (successUpdate) {
+            dispatch({ type: PRODUCT_UPDATE_RESET })
+            navigate('/admin/productlist')
         } else {
-            setName(product.name)
-            setPrice(product.price)
-            setImage(product.image)
-            setBrand(product.brand)
-            setCategory(product.category)
-            setCountInStock(product.countInStock)
-            setDescription(product.description)
-        }
 
+            if (!product.name || product._id !== productId) {
+                dispatch(listProductDetails(productId))
+            } else {
+                setName(product.name)
+                setPrice(product.price)
+                setImage(product.image)
+                setBrand(product.brand)
+                setCategory(product.category)
+                setCountInStock(product.countInStock)
+                setDescription(product.description)
+            }
+        }
 
 
 
     }, [dispatch, navigate, productId, product, successUpdate])
 
     const submitHandler = (e) => {
+        console.log('pressed');
         e.preventDefault()
         //update product
+        dispatch(updateProduct({
+            _id: productId,
+            name,
+            price,
+            image,
+            brand,
+            category,
+            description,
+            countInStock,
+        }))
 
     }
 
@@ -109,7 +124,7 @@ const ProductEditScreen = () => {
 
                             <Form.Group controlId='description'>
                                 <FormLabel>Description</FormLabel>
-                                <FormControl type='textarea' placeholder='Enter description name' value={description} onChange={(e) => setDescription(e.target.value)}></FormControl>
+                                <FormControl as='textarea' placeholder='Enter description name' value={description} onChange={(e) => setDescription(e.target.value)}></FormControl>
                             </Form.Group>
 
                             <Button type='submit' variant='primary'>

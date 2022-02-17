@@ -1,9 +1,9 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { Button, Form, FormControl, FormLabel, } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
@@ -24,6 +24,7 @@ const ProductEditScreen = () => {
     const [category, setCategory] = useState('')
     const [countInStock, setCountInStock] = useState(0)
     const [description, setDescription] = useState('')
+    const [uploading, setUploading] = useState(false)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -76,6 +77,30 @@ const ProductEditScreen = () => {
 
     }
 
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0]
+        const formData = new FormData()
+
+        formData.append('image', file)
+        console.log(formData);
+        setUploading(true)
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+
+            const { data } = await axios.post('/api/upload', formData, config)
+            setImage(data)
+            setUploading(false)
+        } catch (error) {
+            console.error(error)
+            setUploading(false)
+        }
+    }
+
     return (
 
         <>
@@ -93,41 +118,44 @@ const ProductEditScreen = () => {
                     ) : error ? (<Message variant='danger'>{error}</Message>
                     ) : (
                         <Form onSubmit={submitHandler}>
-                            <Form.Group controlId='name'>
-                                <FormLabel>Name</FormLabel>
-                                <FormControl type='name' placeholder='Enter name' value={name} onChange={(e) => setName(e.target.value)}></FormControl>
+                            <Form.Group controlId='name' className='py-2'>
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control type='name' placeholder='Enter name' value={name} onChange={(e) => setName(e.target.value)}></Form.Control>
                             </Form.Group>
-                            <Form.Group controlId='price'>
-                                <FormLabel>Price Address</FormLabel>
-                                <FormControl type='number' placeholder='Enter price' value={price} onChange={(e) => setPrice(e.target.value)}></FormControl>
-                            </Form.Group>
-
-                            <Form.Group controlId='countInStock'>
-                                <FormLabel>Count In Stock Address</FormLabel>
-                                <FormControl type='number' placeholder='Enter Count In Stock' value={countInStock} onChange={(e) => setCountInStock(e.target.value)}></FormControl>
+                            <Form.Group controlId='price' className='py-2'>
+                                <Form.Label>Price Address</Form.Label>
+                                <Form.Control type='number' placeholder='Enter price' value={price} onChange={(e) => setPrice(e.target.value)}></Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId='image'>
-                                <FormLabel>Image</FormLabel>
-                                <FormControl type='text' placeholder='Enter image url' value={image} onChange={(e) => setImage(e.target.value)}></FormControl>
+                            <Form.Group controlId='countInStock' className='py-2'>
+                                <Form.Label>Count In Stock Address</Form.Label>
+                                <Form.Control type='number' placeholder='Enter Count In Stock' value={countInStock} onChange={(e) => setCountInStock(e.target.value)}></Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId='brand'>
-                                <FormLabel>Brand</FormLabel>
-                                <FormControl type='text' placeholder='Enter brand name' value={brand} onChange={(e) => setBrand(e.target.value)}></FormControl>
+                            <Form.Group controlId='brand' className='py-2'>
+                                <Form.Label>Brand</Form.Label>
+                                <Form.Control type='text' placeholder='Enter brand name' value={brand} onChange={(e) => setBrand(e.target.value)}></Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId='category'>
-                                <FormLabel>Category</FormLabel>
-                                <FormControl type='text' placeholder='Enter category name' value={category} onChange={(e) => setCategory(e.target.value)}></FormControl>
+                            <Form.Group controlId='category' className='py-2'>
+                                <Form.Label>Category</Form.Label>
+                                <Form.Control type='text' placeholder='Enter category name' value={category} onChange={(e) => setCategory(e.target.value)}></Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId='description'>
-                                <FormLabel>Description</FormLabel>
-                                <FormControl as='textarea' placeholder='Enter description name' value={description} onChange={(e) => setDescription(e.target.value)}></FormControl>
+                            <Form.Group controlId='description' className='py-2'>
+                                <Form.Label>Description</Form.Label>
+                                <Form.Control as='textarea' placeholder='Enter description name' value={description} onChange={(e) => setDescription(e.target.value)}></Form.Control>
                             </Form.Group>
 
-                            <Button type='submit' variant='primary'>
+                            <Form.Group controlId='image' className='py-2'>
+                                <Form.Label>Image</Form.Label>
+                                {/* <Form.Control type='text' placeholder='Enter image url' value={image} onChange={(e) => setImage(e.target.value)}></Form.Control> */}
+                                <Form.Control type='file' label='Choose File' custom onChange={uploadFileHandler} ></Form.Control>
+                                {uploading && <Loader></Loader>}
+                            </Form.Group>
+
+
+                            <Button type='submit' variant='primary' >
                                 Update
                             </Button>
 

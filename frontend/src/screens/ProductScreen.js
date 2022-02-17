@@ -45,7 +45,7 @@ const ProductScreen = (props) => {
             ) : (
                 <Row>
                     <Col md={6}>
-                        {/* <image src={product.Image} fluid ></image> */}
+                        <Image src={product.image} fluid alt={product.name}></Image>
                     </Col>
                     <Col md={3}>
                         <ListGroup variant='flush'>
@@ -59,7 +59,7 @@ const ProductScreen = (props) => {
                                 Price: ${product.price}
                             </ListGroupItem>
                             <ListGroupItem>
-                                Description: ${product.description}
+                                Description: {product.description}
                             </ListGroupItem>
                         </ListGroup>
                     </Col>

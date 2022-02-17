@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { getUserDetails, updateUser } from '../actions/userAction'
+import { getUserDetails, updateUser } from '../actions/userActions'
 import { USER_UPDATE_RESET } from '../constants/userConstants'
 
 const UserEditScreen = () => {

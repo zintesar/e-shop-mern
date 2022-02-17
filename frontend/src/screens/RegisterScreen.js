@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { register } from '../actions/userAction'
+import { register } from '../actions/userActions'
 
 const RegisterScreen = () => {
 

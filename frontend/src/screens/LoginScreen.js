@@ -6,7 +6,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { login } from '../actions/userAction'
+import { login } from '../actions/userActions'
 
 const LoginScreen = () => {
 

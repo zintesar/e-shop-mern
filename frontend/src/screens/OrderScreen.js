@@ -39,8 +39,13 @@ const OrderScreen = () => {
         order.itemsPrice = addDecimals(order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0))
     }
 
+    console.log(params.id);
+    console.log(order);
 
     useEffect(() => {
+        if (!userInfo) {
+            navigate('/login')
+        }
 
         const addPaypalScript = async () => {
             const { data: clientId } = await axios.get('/api/config/paypal')
@@ -55,7 +60,7 @@ const OrderScreen = () => {
             document.body.appendChild(script)
         }
 
-        if (!order || successPay || successDeliver) {
+        if (!order || successPay || successDeliver || order._id !== params.id) {
             dispatch({ type: ORDER_PAY_RESET })
             dispatch({ type: ORDER_DELIVER_RESET })
             dispatch(getOrderDetails(params.id))

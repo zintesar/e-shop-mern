@@ -5,6 +5,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
+import { CART_RESET } from '../constants/cartConstants'
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
 const PlaceOrderScreen = () => {
 
@@ -29,6 +31,10 @@ const PlaceOrderScreen = () => {
     useEffect(() => {
         if (success) {
             navigate(`/order/${order._id}`)
+            dispatch({ type: CART_RESET })
+            dispatch({ type: ORDER_CREATE_RESET })
+
+
         }
     }, [navigate, success])
 

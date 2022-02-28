@@ -7,6 +7,8 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
 import { useParams } from 'react-router-dom'
+import ProductCarousel from '../components/ProductCarousel'
+import { Link } from 'react-router-dom'
 
 
 const HomeScreen = () => {
@@ -17,6 +19,8 @@ const HomeScreen = () => {
     const keyword = params.keyword
     const pageNumber = params.pageNumber || 1
 
+
+
     const productList = useSelector(state => state.productList)
     const { loading, error, products, page, pages } = productList
 
@@ -25,7 +29,8 @@ const HomeScreen = () => {
     }, [dispatch, keyword, pageNumber])
 
     return (
-        <div>
+        <>
+            {!keyword ? <ProductCarousel></ProductCarousel> : <Link to='/' className='btn btn-light'>Go Back</Link>}
             <h1>Latest Products</h1>
 
             {loading ? (
@@ -45,7 +50,7 @@ const HomeScreen = () => {
                 </>
             )}
 
-        </div >
+        </ >
     )
 }
 

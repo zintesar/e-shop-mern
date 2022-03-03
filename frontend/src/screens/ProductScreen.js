@@ -9,7 +9,6 @@ import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { set } from 'mongoose'
 
 // const ProductScreen = ({ history, match }) => {
 const ProductScreen = (props) => {
@@ -18,9 +17,11 @@ const ProductScreen = (props) => {
 
     const [qty, setQty] = useState(1)
     const [rating, setRating] = useState(0)
-    const [comment, setComment] = useState('1')
+    const [comment, setComment] = useState('')
 
     const dispatch = useDispatch()
+
+    let test
 
     const productDetails = useSelector(state => state.productDetails)
     const { loading, error, product } = productDetails
@@ -52,7 +53,6 @@ const ProductScreen = (props) => {
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(createProductReview(params.id, { rating, comment }))
-
     }
     return (
         <div>
@@ -138,7 +138,8 @@ const ProductScreen = (props) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col md={6}>
+                        <Col md={8}>
+
                             <h2>Reviews</h2>
                             {product.reviews.length === 0 && <Message>No Reviews</Message>}
                             <ListGroup variant='flush'>
@@ -160,7 +161,7 @@ const ProductScreen = (props) => {
                                             </Form.Group>
                                             <Form.Group controlId='comment' className='py-2'>
                                                 <Form.Label>Comment</Form.Label>
-                                                <Form.Control as='textarea' row='3' value={comment} onChange={(e) => e.target.value}></Form.Control>
+                                                <Form.Control as='textarea' row='3' value={comment} onChange={(e) => setComment(e.target.value)}></Form.Control>
                                             </Form.Group>
                                             <Button type='submit' variant='primary'>Submit</Button>
                                         </Form>
@@ -169,13 +170,16 @@ const ProductScreen = (props) => {
                                     )}
                                 </ListGroupItem>
                                 {product.reviews.map(review => (
-                                    <ListGroup.Item key={review._id}>
-                                        <strong>{review.name}</strong>
+                                    <ListGroup.Item key={review._id} >
+                                        <strong className='py-2'>{review.name}</strong>
                                         <Rating value={review.rating}></Rating>
-                                        <p>{review.createdAt.substring(0, 10)}</p>
-                                        <p>{review.comment}</p>
+                                        <p className='py-2'>{review.createdAt.substring(0, 10)}</p>
+                                        <p className='py-1'>{review.comment}</p>
                                     </ListGroup.Item>
                                 ))}
+
+
+
                             </ListGroup>
                         </Col>
                     </Row>

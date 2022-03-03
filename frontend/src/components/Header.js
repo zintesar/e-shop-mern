@@ -29,8 +29,8 @@ const Header = () => {
                         <Navbar.Brand>e-shop</Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav just">
-                        <Nav className='ms-auto'>
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className='col-8 mx-2'>
                             <SearchBox></SearchBox>
                         </Nav>
                         <Nav className="ms-auto">
@@ -38,7 +38,7 @@ const Header = () => {
                                 <Nav.Link><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
                             </LinkContainer>
                             {userInfo ? (
-                                <NavDropdown title={userInfo.name} id='username'>
+                                <NavDropdown title={userInfo.name} id='username' style={{ marginRight: '0rem' }}>
                                     <LinkContainer to='/profile'>
                                         <NavDropdown.Item>
                                             Profile
@@ -56,7 +56,7 @@ const Header = () => {
                             )
                             }
                             {userInfo && userInfo.isAdmin && (
-                                <NavDropdown title='admin' id='adminmenu'>
+                                <NavDropdown title='admin' id='adminmenu' style={{ marginRight: '0rem' }}>
                                     <LinkContainer to='/admin/userlist'>
                                         <NavDropdown.Item>
                                             Users

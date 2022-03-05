@@ -69,8 +69,8 @@ const ProductScreen = (props) => {
             ) : (
                 <>
                     <Row>
-                        <Col md={6}>
-                            <Image src={product.image} fluid alt={product.name}></Image>
+                        <Col md={6} className='py-3'>
+                            <Image src={product.image} fluid alt={product.name} style={{ width: 'auto', height: '60vh' }}></Image>
                         </Col>
                         <Col md={3}>
                             <ListGroup variant='flush'>

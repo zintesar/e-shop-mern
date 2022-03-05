@@ -1,0 +1,73 @@
+const products = [
+    {
+        name: 'Men\'s Regular-fit Cotton Pique Polo Shirt',
+        image: '/uploads\\Men\'s Regular-fit Cotton Pique Polo Shirt(black).jpg',
+        description: '100% Cotton Imported Button closure Machine Wash Regular fit through the chest for a relaxed, unrestricted fit with a printed neck label to maximize comfort A classic cut and soft cotton fabric make this polo a go-to for the office or the weekend Short-sleeve polo shirt in breathable, soft pique waffle knit',
+        brand: 'Amazon Essentials',
+        category: 'Shirt',
+        price: 10,
+        countInStock: 3,
+        rating: 0,
+        numReviews: 0,
+    },
+    {
+        name: 'Men\'s Slim-fit Cotton Pique Polo Shirt',
+        image: '/uploads\\Men\'s Slim-fit Cotton Pique Polo Shirt(blue black stripe).jpg',
+        description: '100% Cotton Imported Button closure Machine Wash Regular fit through the chest for a relaxed, unrestricted fit with a printed neck label to maximize comfort A classic cut and soft cotton fabric make this polo a go-to for the office or the weekend Short-sleeve polo shirt in breathable, soft pique waffle knit',
+        brand: 'Amazon Essentials',
+        category: 'Shirt',
+        price: 10,
+        countInStock: 3,
+        rating: 0,
+        numReviews: 0,
+    },
+    {
+        name: 'Men\'s Regular-Fit Quick-Dry Golf Polo Shirt',
+        image: '/uploads\\Men\'s Regular-Fit Quick-Dry Golf Polo Shirt(burgandy).jpg',
+        description: '100% Cotton Imported Button closure Machine Wash Regular fit through the chest for a relaxed, unrestricted fit with a printed neck label to maximize comfort A classic cut and soft cotton fabric make this polo a go-to for the office or the weekend Short-sleeve polo shirt in breathable, soft pique waffle knit',
+        brand: 'Amazon Essentials',
+        category: 'Shirt',
+        price: 12,
+        countInStock: 3,
+        rating: 0,
+        numReviews: 0,
+    },
+    {
+        name: 'Men\'s Slim-fit Short-Sleeve Slub Henley T-Shirt',
+        image: '/uploads\\Men\'s Slim-fit Short-Sleeve Slub Henley T-Shirt(light pink).jpg',
+        description: '100% Cotton Imported Button closure Machine Wash Regular fit through the chest for a relaxed, unrestricted fit with a printed neck label to maximize comfort A classic cut and soft cotton fabric make this polo a go-to for the office or the weekend Short-sleeve polo shirt in breathable, soft pique waffle knit',
+        brand: 'Amazon Essentials',
+        category: 'Shirt',
+        price: 15,
+        countInStock: 3,
+        rating: 0,
+        numReviews: 0,
+    },
+    {
+        name: 'Men\'s Performance Cotton Short-Sleeve T-Shirt',
+        image: '/uploads\\Men\'s Performance Cotton Short-Sleeve T-Shirt(deep blue).jpg',
+        description: '100% Cotton Imported Button closure Machine Wash Regular fit through the chest for a relaxed, unrestricted fit with a printed neck label to maximize comfort A classic cut and soft cotton fabric make this polo a go-to for the office or the weekend Short-sleeve polo shirt in breathable, soft pique waffle knit',
+        brand: 'Amazon Essentials',
+        category: 'Shirt',
+        price: 10,
+        countInStock: 5,
+        rating: 0,
+        numReviews: 0,
+    },
+    {
+        name: 'Men\'s Slim-fit Long-Sleeve Pique Polo',
+        image: '/uploads\\Men\'s Slim-fit Long-Sleeve Pique Polo(yellow).jpg',
+        description: '100% Cotton Imported Button closure Machine Wash Regular fit through the chest for a relaxed, unrestricted fit with a printed neck label to maximize comfort A classic cut and soft cotton fabric make this polo a go-to for the office or the weekend Short-sleeve polo shirt in breathable, soft pique waffle knit',
+        brand: 'Amazon Essentials',
+        category: 'Shirt',
+        price: 10,
+        countInStock: 5,
+        rating: 0,
+        numReviews: 0,
+    },
+]
+
+
+export default products
+
+// module.exports = products

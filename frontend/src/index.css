@@ -38,12 +38,14 @@ h3 {
 
 .carousel img {
   height: 300px;
-  padding: 50px;
+  width: auto;
+  padding: 40px;
   margin: 40px;
   border-radius: 20%;
-  margin-left: auto;
-  margin-right: auto;
+  object-fit: scale-down;
 }
 .carousel a {
   margin: 0 auto;
 }
+
+/* style={{ height: '20vw', width: '100%', objectFit: 'contain' }} */

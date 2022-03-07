@@ -21,7 +21,6 @@ const ProductScreen = (props) => {
 
     const dispatch = useDispatch()
 
-    let test
 
     const productDetails = useSelector(state => state.productDetails)
     const { loading, error, product } = productDetails
@@ -69,8 +68,22 @@ const ProductScreen = (props) => {
             ) : (
                 <>
                     <Row>
-                        <Col md={6} className='py-3'>
-                            <Image src={product.image} fluid alt={product.name} style={{ width: 'auto', height: '60vh' }}></Image>
+                        <Col md={1}>
+                            <ListGroup variant='flush'>
+                                {/* {}
+                                <ListGroupItem>
+                                    <Image src={product.image} fluid alt={product.name} style={{ width: 'auto', height: '10vh' }}></Image>
+                                </ListGroupItem>
+                                <ListGroupItem>
+                                    <Image src={product.image} fluid alt={product.name} style={{ width: 'auto', height: '10vh' }}></Image>
+                                </ListGroupItem>
+                                <ListGroupItem>
+                                    <Image src={product.image} fluid alt={product.name} style={{ width: 'auto', height: '10vh' }}></Image>
+                                </ListGroupItem> */}
+                            </ListGroup>
+                        </Col>
+                        <Col md={4} className='py-3'>
+                            <Image src={product.image} fluid alt={product.name} style={{ height: '20vw', width: '100%', objectFit: 'contain' }}></Image>
                         </Col>
                         <Col md={3}>
                             <ListGroup variant='flush'>

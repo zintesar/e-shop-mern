@@ -10,7 +10,7 @@ const Product = ({ product }) => {
         <Card className='my-3 p-3 rounded d-flex align-self-stretch'>
 
             <Link to={`/product/${product._id}`}>
-                <Card.Img src={product.image} variant='top' style={{ height: '300px' }}></Card.Img>
+                <Card.Img src={product.image} variant='top' style={{ height: '20vw', width: '100%', objectFit: 'scale-down' }}></Card.Img>
             </Link>
 
             <Card.Body>

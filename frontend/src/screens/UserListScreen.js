@@ -8,9 +8,6 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 
 
-
-
-
 const UserListScreen = () => {
 
   const dispatch = useDispatch()

@@ -179,7 +179,8 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
       }
     }
 
-    const { data } = await axios.put(`/api/products/${productId}/reviews`, review, config)
+    // const { data } = 
+    await axios.put(`/api/products/${productId}/reviews`, review, config)
 
     dispatch({
       type: PRODUCT_CREATE_REVIEW_SUCCESS,

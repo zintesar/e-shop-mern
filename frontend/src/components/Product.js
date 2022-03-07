@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 import Rating from './Rating'
 
+
 const Product = ({ product }) => {
   return (
 
     <Card className='my-3 p-3 rounded d-flex align-self-stretch'>
 
       <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} variant='top' style={{ height: '20vw', width: '100%', objectFit: 'scale-down' }}></Card.Img>
+        <Card.Img src={product.image} variant='top' style={{ height: '15vw', width: '100%', objectFit: 'scale-down' }}></Card.Img>
       </Link>
 
       <Card.Body>

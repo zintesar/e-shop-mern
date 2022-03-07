@@ -20,12 +20,12 @@ import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
-import OrderListScreen from './screens/OrderLIstScreen';
+import OrderListScreen from './screens/OrderListScreen';
 
 const App = () => {
   return (
     <Router>
-      <Header />
+      <Header></Header>
       <main className='py-3'>
         <Container>
           <Routes>
@@ -55,9 +55,9 @@ const App = () => {
           </Routes>
         </Container>
       </main>
-      <Footer />
+      <Footer></Footer>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { Button, Form, FormControl, FormLabel, } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
@@ -20,7 +19,6 @@ const UserEditScreen = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
-  const [message, setMessage] = useState(null)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()

@@ -72,7 +72,7 @@ const OrderScreen = () => {
       }
     }
 
-  }, [navigate, dispatch, params, order, successPay, successDeliver])
+  }, [navigate, dispatch, params, order, successPay, successDeliver, userInfo])
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);

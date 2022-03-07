@@ -36,7 +36,7 @@ const PlaceOrderScreen = () => {
 
 
     }
-  }, [navigate, success])
+  }, [navigate, success, dispatch, order._id])
 
   const placeOrderHandler = () => {
     dispatch(createOrder({

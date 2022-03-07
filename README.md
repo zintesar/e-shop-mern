@@ -2,6 +2,10 @@
 
 > eCommerce platform built with the MERN stack & Redux.
 
+changelog:  
+ - changed react router dom to 6.0.2  
+ - changed eact bootstrap to 5
+
 ![screenshot](https://github.com/zintesar/e-shop-mern/blob/master/uploads/Screen%20Shot%202020-09-29%20at%205.50.52%20PM.png)
 
 ## Features

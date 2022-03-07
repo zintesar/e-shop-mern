@@ -25,7 +25,7 @@ import OrderListScreen from './screens/OrderLIstScreen';
 const App = () => {
   return (
     <Router>
-      <Header></Header>
+      <Header />
       <main className='py-3'>
         <Container>
           <Routes>
@@ -55,9 +55,9 @@ const App = () => {
           </Routes>
         </Container>
       </main>
-      <Footer></Footer>
+      <Footer />
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

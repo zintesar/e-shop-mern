@@ -12,66 +12,66 @@ const LoginScreen = () => {
 
 
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const location = useLocation()
-    const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const location = useLocation()
+  const navigate = useNavigate()
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-    const userLogin = useSelector(state => state.userLogin)
-    const { loading, error, userInfo } = userLogin
-
-
-
-    const redirect = location.search ? location.search.split('=')[1] : '/'
-
-    useEffect(() => {
-        if (userInfo) {
-            navigate(redirect)
-        }
-
-    }, [navigate, userInfo, redirect])
+  const userLogin = useSelector(state => state.userLogin)
+  const { loading, error, userInfo } = userLogin
 
 
-    const submitHandler = (e) => {
-        e.preventDefault()
-        dispatch(login(email, password))
 
+  const redirect = location.search ? location.search.split('=')[1] : '/'
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect)
     }
 
+  }, [navigate, userInfo, redirect])
 
-    return (
 
-        <FormContainer>
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(login(email, password))
 
-            <h1>Sign In</h1>
-            {error && <Message variant='danger'>{error}</Message>}
-            {loading && <Loader />}
-            <Form onSubmit={submitHandler}>
-                <Form.Group controlId='email'>
-                    <FormLabel>Email Address</FormLabel>
-                    <FormControl type='email' placeholder='Enter email' value={email} onChange={(e) => setEmail(e.target.value)}></FormControl>
-                </Form.Group>
+  }
 
-                <Form.Group controlId='password'>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type='password' placeholder='Enter password' value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
-                </Form.Group>
 
-                <Button type='submit' variant='primary'>
-                    Sign In
-                </Button>
+  return (
 
-                <Row className='py-3'>
-                    <Col>
-                        New Customer?{' '}
-                        <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}> Register  </Link>
-                    </Col>
-                </Row>
-            </Form>
-        </FormContainer>
-    )
+    <FormContainer>
+
+      <h1>Sign In</h1>
+      {error && <Message variant='danger'>{error}</Message>}
+      {loading && <Loader />}
+      <Form onSubmit={submitHandler}>
+        <Form.Group controlId='email'>
+          <FormLabel>Email Address</FormLabel>
+          <FormControl type='email' placeholder='Enter email' value={email} onChange={(e) => setEmail(e.target.value)}></FormControl>
+        </Form.Group>
+
+        <Form.Group controlId='password'>
+          <Form.Label>Password</Form.Label>
+          <Form.Control type='password' placeholder='Enter password' value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
+        </Form.Group>
+
+        <Button type='submit' variant='primary'>
+          Sign In
+        </Button>
+
+        <Row className='py-3'>
+          <Col>
+            New Customer?{' '}
+            <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}> Register  </Link>
+          </Col>
+        </Row>
+      </Form>
+    </FormContainer>
+  )
 }
 
 export default LoginScreen

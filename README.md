@@ -2,6 +2,8 @@
 
 > eCommerce platform built with the MERN stack & Redux.
 
+- LIVE DEMO : [E-Shop](https://zint-eshop.herokuapp.com)
+
 ![screenshot](https://github.com/zintesar/e-shop-mern/blob/master/uploads/Screen%20Shot%202020-09-29%20at%205.50.52%20PM.png)
 
 ## Features
@@ -29,9 +31,9 @@ Create a .env file in then root and add the following
 ```
 NODE_ENV = development
 PORT = 5000
-MONGO_URI = your mongodb uri
+MONGO_URI = 'mongodb://127.0.0.1:27017/e-shop'
 JWT_SECRET = 'abc123'
-PAYPAL_CLIENT_ID = your paypal client id
+PAYPAL_CLIENT_ID = 'AUTukrwqC51whHvpU3rXSm7_kUM016G7b-LSEHu6F0zI_pSj0KPJpEEOnmQfroUWs4bruhS7P4CslXTV'
 ```
 
 ### Install Dependencies (frontend & backend)
@@ -83,6 +85,14 @@ john@example.com (Customer)
 
 jane@example.com (Customer)
 123456
+```
+
+```
+paypal sandbox id
+
+sb-0efhy13041947@personal.example.com
+i%HhN4%M
+
 ```
 
 This is the course project for [MERN eCommerce From Scratch](https://www.udemy.com/course/mern-ecommerce) course

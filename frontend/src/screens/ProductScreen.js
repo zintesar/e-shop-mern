@@ -9,6 +9,13 @@ import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import InnerImageZoom from 'react-inner-image-zoom';
+import { SideBySideMagnifier, } from "@africasokoni/react-image-magnifiers";
+import ReactImageMagnify from '@blacklab/react-image-magnify';
+import MagnifierContainer from '@africasokoni/react-image-magnifiers/dist/MagnifierContainer'
+import MagnifierPreview from '@africasokoni/react-image-magnifiers/dist/MagnifierPreview'
+import MagnifierZoom from '@africasokoni/react-image-magnifiers/dist/MagnifierZoom'
+
 
 // const ProductScreen = ({ history, match }) => {
 const ProductScreen = (props) => {
@@ -18,6 +25,7 @@ const ProductScreen = (props) => {
   const [qty, setQty] = useState(1)
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
+  const [mainImage, setMainImage] = useState()
 
   const dispatch = useDispatch()
 
@@ -25,14 +33,13 @@ const ProductScreen = (props) => {
   const productDetails = useSelector(state => state.productDetails)
   const { loading, error, product } = productDetails
 
+
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
 
 
   const productReview = useSelector(state => state.productReview)
   const { success: successProductReview, error: errorProductReview } = productReview
-
-
 
   useEffect(() => {
     if (successProductReview) {
@@ -42,6 +49,7 @@ const ProductScreen = (props) => {
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
     }
     dispatch(listProductDetails(params.id))
+
   }, [dispatch, props, params, successProductReview])
 
   const addToCartHandler = () => {
@@ -53,11 +61,11 @@ const ProductScreen = (props) => {
     e.preventDefault()
     dispatch(createProductReview(params.id, { rating, comment }))
   }
+
+
+
   return (
-    <div>
-
-
-
+    <>
       <Link className='btn btn-dark my-3' to='/'>
         Go Back
       </Link>
@@ -67,23 +75,76 @@ const ProductScreen = (props) => {
         <Message variant='danger'></Message>
       ) : (
         <>
+          {/* {setMainImage(product.image[0])} */}
           <Row>
             <Col md={1}>
               <ListGroup variant='flush'>
-                {/* {}
-                                <ListGroupItem>
-                                    <Image src={product.image} fluid alt={product.name} style={{ width: 'auto', height: '10vh' }}></Image>
-                                </ListGroupItem>
-                                <ListGroupItem>
-                                    <Image src={product.image} fluid alt={product.name} style={{ width: 'auto', height: '10vh' }}></Image>
-                                </ListGroupItem>
-                                <ListGroupItem>
-                                    <Image src={product.image} fluid alt={product.name} style={{ width: 'auto', height: '10vh' }}></Image>
-                                </ListGroupItem> */}
+                {product.image.map((image) => (
+                  <ListGroupItem>
+                    {/* <Button > */}
+                    <Image src={image} fluid alt={product.name} onClick={() => setMainImage(image)}></Image>
+                    {/* </Button> */}
+                  </ListGroupItem>
+                ))}
               </ListGroup>
             </Col>
             <Col md={4} className='py-3'>
-              <Image src={product.image} fluid alt={product.name} style={{ height: '20vw', width: '100%', objectFit: 'contain' }}></Image>
+
+              <div
+                style={{ height: '', width: '%', objectFit: 'contain', border: '1px solid red' }}
+              >
+
+                {/* <MagnifierContainer autoInPlace={true} >
+                  <div className="">
+                    <MagnifierPreview imageSrc={mainImage ? (mainImage) : (product.image[0])} />
+                  </div>
+                  <MagnifierZoom style={{ height: "400px" }} imageSrc={mainImage ? (mainImage) : (product.image[0])} />
+                </MagnifierContainer> */}
+
+                {/* {(window.innerWidth * 20) / 100} */}
+                {/* <InnerImageZoom
+                  src={mainImage ? (mainImage) : (product.image[0])}
+                  height={(window.innerWidth * 15) / 100}
+                // width={}
+                /> */}
+              </div>
+
+
+              <SideBySideMagnifier
+                imageSrc={mainImage ? (mainImage) : (product.image[0])}
+                imageAlt="Example"
+                mouseActivation='hover'
+                alwaysInPlace={true}
+                fillAvailableSpace={true}
+              // style={{ height: '20vw', width: '100%', }}
+              // style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              />
+
+              {/* <ReactImageMagnify
+                imageProps={{
+                  alt: 'example small image',
+                  src: product.image,
+                  height: '10vw',
+                  width: '10vh'
+                }}
+                magnifiedImageProps={{
+                  src: product.image,
+                  height: '30vw',
+                  width: '30vh'
+                }}
+                magnifyContainerProps={{
+                  scale: 2
+                }}
+                onActivationChanged={function noRefCheck() { }}
+                onDetectedEnvironmentChanged={function noRefCheck() { }}
+                onPositionChanged={function noRefCheck() { }}
+                portalProps={{
+                  horizontalOffset: 10,
+                  id: 'portal-test-id'
+                }}
+              /> */}
+
+              {/* <Image src={product.image} fluid alt={product.name} style={{ height: '20vw', width: '100%', objectFit: 'contain' }}></Image> */}
             </Col>
             <Col md={3}>
               <ListGroup variant='flush'>
@@ -152,7 +213,6 @@ const ProductScreen = (props) => {
           </Row>
           <Row>
             <Col md={8}>
-
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant='flush'>
@@ -199,9 +259,7 @@ const ProductScreen = (props) => {
         </>)
 
       }
-
-
-    </div >
+    </>
   )
 }
 
